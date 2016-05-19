@@ -1,0 +1,15 @@
+{
+  "name": "talend/syncope",
+  "version": "0.1.0",
+  "author": "Andreas Heumaier",
+  "summary": "Puppet Module for talends syncope service",
+  "license": "MIT",
+  "source": "https://github.com/Talend/puppet-syncope",
+  "project_page": "https://github.com/Talend/puppet-syncope",
+  "issues_url": "https://github.com/Talend/puppet-syncope/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
