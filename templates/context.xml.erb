@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+<Manager pathname="" />
+<!--
+<Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+-->
+<Resource name="jdbc/syncopeDataSource" auth="Container" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+testWhileIdle="true" testOnBorrow="true" testOnReturn="true"
+validationQuery="SELECT 1" validationInterval="30000"
+minIdle="2" initialSize="2"
+removeAbandonedTimeout="20000"
+logAbandoned="true" suspectTimeout="20000"
+timeBetweenEvictionRunsMillis="5000" minEvictableIdleTimeMillis="5000"
+jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
+org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
+type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+url="<%= @postgres_jdbc_syncope_url -%>"
+username="<%= @postgres_username -%>" password="<%= @postgres_password -%>" maxActive="30" maxIdle="10" maxWait="20000" removeAbandoned="true"/>
+</Context>
