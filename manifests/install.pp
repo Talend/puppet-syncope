@@ -15,11 +15,5 @@ class syncope::install () {
     provider => 'shell',
     notify   => Service['tomcat-syncope-srv'],
   }
-
-
-
-
-  }
-
-
+  
 }
