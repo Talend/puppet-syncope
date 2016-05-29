@@ -7,22 +7,13 @@ class syncope::config (
 ) {
 
 
-  tomcat::config::server::host{ 'localhost':
+  tomcat::config::server::host { 'localhost':
     app_base              => $application_path,
-    catalina_base         => '/opt/apache-tomcat/tomcat',
+    catalina_base         => '/opt/tomcat/',
     host_ensure           => 'present',
     host_name             => 'localhost',
     parent_service        => 'Catalina',
     additional_attributes => { 'unpackWARs'=>'true', 'autoDeploy'=>'true'},
-  }
-
-
-  file {
-    "${application_path}/logs/velocity.log":
-      ensure  => file,
-      owner   => 'tomcat',
-      group   => 'tomcat',
-      mode    => '0664';
   }
 
   ini_setting {
@@ -32,7 +23,7 @@ class syncope::config (
       section => '',
       setting => 'jpa.url',
       value   => $postgres_jdbc_syncope_url,
-      notify  => Service['tomcat-syncope-srv'];
+      notify  => Service['tomcat'];
 
     'pgpassword':
       ensure  => present,

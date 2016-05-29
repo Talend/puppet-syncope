@@ -1,6 +1,5 @@
 class syncope::params {
 
-  $java_home = '/usr/java/default'
   $java_xmx = undef
   $java_xmx_default = floor($::memorysize_mb * 0.70)
   $java_xmx_real = pick($java_xmx, $java_xmx_default)
