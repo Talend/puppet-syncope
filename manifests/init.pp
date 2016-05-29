@@ -57,14 +57,10 @@ class syncope(
   $syncope_nodes = undef,
   $application_path= $syncope::params::application_path
 
-
-
 ) inherits syncope::params {
 
-  validate_re($postgres_jdbc_syncope_url, $url_re, "postgres  url is not valid url. ${postgres_jdbc_syncope_url}")
+  validate_re($postgres_jdbc_syncope_url, $url_re, "postgres jdbc url is not valid url. ${postgres_jdbc_syncope_url}")
   validate_bool($jmx_enabled)
-
-
 
 
   class { 'syncope::install': } ->

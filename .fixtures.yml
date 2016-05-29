@@ -1,0 +1,9 @@
+fixtures:
+  forge_modules:
+    stdlib: "puppetlabs/stdlib"
+    tomcat:
+      repo: "puppetlabs/tomcat"
+      ref: "1.5.0"
+    inifile:  "puppetlabs/inifile"
+  symlinks:
+    syncope: "#{source_dir}"
