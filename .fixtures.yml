@@ -1,0 +1,17 @@
+fixtures:
+  symlinks:
+    syncope: '#{source_dir}'
+  forge_modules:
+    tomcat:
+      repo: "puppetlabs/tomcat"
+      ref: "1.4.1"
+    selinux: "jfryman/selinux"
+    stdlib: "puppetlabs/stdlib"
+    java: "puppetlabs/java"
+    concat: "puppetlabs/concat"
+    awscli: "jdowning/awscli"
+    epel: "stahnma/epel"
+    nginx: "jfryman/nginx"
+    staging: "nanliu/staging"
+    apt: "puppetlabs/apt"
+    inifile: "puppetlabs/inifile"
