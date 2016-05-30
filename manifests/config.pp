@@ -23,7 +23,7 @@ class syncope::config (
       owner   => 'tomcat',
       group   => 'tomcat',
       mode    => '0664';
-    "${application_path}/webapps/syncope/WEB-INF/classes/content.xml":
+    "${application_path}/syncope/WEB-INF/classes/content.xml":
       source  => "puppet:///modules/syncope/WEB-INF/classes/content.xml",
       owner   => 'tomcat',
       group   => 'tomcat',
@@ -32,19 +32,19 @@ class syncope::config (
   ini_setting {
     'jpa_url':
       ensure  => present,
-      path    => "${application_path}/webapps/syncope/WEB-INF/classes/persistence.properties",
+      path    => "${application_path}/syncope/WEB-INF/classes/persistence.properties",
       section => '',
       setting => 'jpa.url',
       value   => $postgres_jdbc_syncope_url;
     'pgpassword':
       ensure  => present,
-      path    => "${application_path}/webapps/syncope/WEB-INF/classes/persistence.properties",
+      path    => "${application_path}/syncope/WEB-INF/classes/persistence.properties",
       section => '',
       setting => 'jpa.password',
       value   => $postgres_password;
     'admin_password':
       ensure  => present,
-      path    => "${application_path}/webapps/syncope/WEB-INF/classes/security.properties",
+      path    => "${application_path}/syncope/WEB-INF/classes/security.properties",
       section => '',
       setting => 'adminPassword',
       value   => $admin_password,
@@ -79,13 +79,13 @@ class syncope::config (
     }
 
     exec { 'postgres-jar-link':
-      command  => 'ln -fs ${application_path}/webapps/syncope/WEB-INF/lib/postgresql* ${application_path}/lib && touch /var/lock/postgres_jar_link.lock',
+      command  => 'ln -fs ${application_path}/syncope/WEB-INF/lib/postgresql* ${application_path}/lib && touch /var/lock/postgres_jar_link.lock',
       creates  => '/var/lock/postgres_jar_link.lock',
       provider => 'shell',
     }
 
     exec { 'dbcp-jar-link':
-      command  => 'ln -fs /usr/share/java/tomcat/commons-dbcp.jar ${application_path}/lib && touch /var/lock/dbcp-jar-link.lock',
+      command  => 'ln -fs /opt/lib/tomcat/commons-dbcp.jar ${application_path}/lib && touch /var/lock/dbcp-jar-link.lock',
       creates  => '/var/lock/dbcp-jar-link.lock',
       provider => 'shell',
     }
@@ -99,21 +99,21 @@ class syncope::config (
 
     file_line { 'uncomment-resource-ref-begin':
       ensure => 'present',
-      path   => '${application_path}/webapps/syncope/WEB-INF/web.xml',
+      path   => '${application_path}/syncope/WEB-INF/web.xml',
       match  => '.*<!--<resource-ref>.*',
       line   => '<resource-ref>',
     }
 
     file_line { 'uncomment-resource-ref-end':
       ensure => 'present',
-      path   => '${application_path}/webapps/syncope/WEB-INF/web.xml',
+      path   => '${application_path}/syncope/WEB-INF/web.xml',
       match  => '.*</resource-ref>-->.*',
       line   => '</resource-ref>',
     }
 
     file_line { 'replace-presistence-context':
       ensure => 'present',
-      path   => '${application_path}/webapps/syncope/WEB-INF/classes/persistenceContextEMFactory.xml',
+      path   => '${application_path}/syncope/WEB-INF/classes/persistenceContextEMFactory.xml',
       match  => '.*<entry key="openjpa.RemoteCommitProvider" value=.*',
       line   => "<entry key=\"openjpa.RemoteCommitProvider\" value=\"tcp(Addresses=${syncope_nodes_formatted})\"/>",
       after  => '<entry key="openjpa.QueryCache" value="true"/>',
