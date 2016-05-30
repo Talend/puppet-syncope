@@ -65,8 +65,6 @@ class syncope(
   validate_bool($jmx_enabled)
 
 
-
-
   class { 'syncope::install': } ->
   class { 'syncope::config': } ~>
   class { 'syncope::service': } ->
