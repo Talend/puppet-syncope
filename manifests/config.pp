@@ -24,6 +24,11 @@ class syncope::config (
       owner   => 'tomcat',
       group   => 'tomcat',
       mode    => '0664';
+    "${catalina_base}/logs/console.log":
+      ensure  => file,
+      owner   => 'tomcat',
+      group   => 'tomcat',
+      mode    => '0664';
     "${application_path}/syncope/WEB-INF/classes/content.xml":
       source  => "puppet:///modules/syncope/WEB-INF/classes/content.xml",
       owner   => 'tomcat',

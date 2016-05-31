@@ -4,7 +4,7 @@ class syncope::service (
 
 ) {
 
-  tomcat::service { 'tomcat':
+  tomcat::service { 'syncope':
     catalina_base => $catalina_base,
     use_init      => false,
   }
