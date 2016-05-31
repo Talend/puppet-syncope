@@ -1,6 +1,6 @@
 class syncope::service (
 
-  $catalina_base = $synope::catalina_base
+  $catalina_base = $syncope::catalina_base
 
 ) {
 

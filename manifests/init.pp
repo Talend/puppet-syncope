@@ -55,7 +55,7 @@ class syncope(
   $jmx_enabled = $syncope::params::jmx_enabled,
   $cluster_enable = $syncope::params::cluster_enable,
   $syncope_nodes = undef,
-  $catalina_base = $syncope::params::catalina_base
+  $catalina_base = $syncope::params::catalina_base,
   $application_path= $syncope::params::application_path
 
 
