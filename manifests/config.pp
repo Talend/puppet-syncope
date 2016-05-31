@@ -2,6 +2,7 @@ class syncope::config (
 
   $jmx_enabled = $syncope::jmx_enabled,
   $cluster_enable = $syncope::cluster_enable,
+  $catalina_base = $syncope::catalina_base,
   $application_path = $syncope::application_path
 
 ) {
@@ -9,7 +10,7 @@ class syncope::config (
 
   tomcat::config::server::host{ 'localhost':
     app_base              => $application_path,
-    catalina_base         => '/opt/apache-tomcat/tomcat7',
+    catalina_base         => $catalina_base,
     host_ensure           => 'present',
     host_name             => 'localhost',
     parent_service        => 'Catalina',
@@ -18,7 +19,7 @@ class syncope::config (
 
 
   file {
-    "${application_path}/logs/velocity.log":
+    "${catalina_base}/logs/velocity.log":
       ensure  => file,
       owner   => 'tomcat',
       group   => 'tomcat',
@@ -54,7 +55,7 @@ class syncope::config (
   if $jmx_enabled {
 
     tomcat::config::server::listener { 'syncope-jmx':
-      catalina_base         => '/opt/apache-tomcat/tomcat7',
+      catalina_base         => $catalina_base,
       listener_ensure       => present,
       class_name            => 'org.apache.catalina.mbeans.JmxRemoteLifecycleListener',
       additional_attributes => {
