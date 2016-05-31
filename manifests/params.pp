@@ -16,13 +16,12 @@ class syncope::params {
   $postgres_jdbc_syncope_url = "jdbc:postgresql://${postgres_node}:${postgres_port}/${postgres_db_name}"
 
   $tomcat_install_from_source = true
-  $tomcat_source_url          = $source_url
   $tomcat_manage_user         = true
   $tomcat_manage_group        = true
   $tomcat_user                = 'tomcat'
   $tomcat_group               = 'tomcat'
-  $tomcat_catalina_base       = $catalina_base
-  $tomcat_java_home           = $java_home
+  $tomcat_catalina_base       = '/opt/apache-tomcat/syncope'
+  $tomcat_java_home           = '/usr/java/default'
 
   $admin_password = 'undef'
   $cluster_enable = false

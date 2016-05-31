@@ -1,16 +1,19 @@
 class syncope::install (
 
 
-  $catalina_base = $syncope::catalina_base,
-  $tomcat_version = '8',
+  $syncope_catalina_base      = $syncope::catalina_base,
   $tomcat_install_from_source = $syncope::tomcat_install_from_source,
-  $tomcat_source_url          = $syncope::tomcat_source_url,
+  $tomcat_version             = $syncope::tomcat_version,
   $tomcat_manage_user         = $syncope::tomcat_manage_user,
   $tomcat_manage_group        = $syncope::tomcat_manage_group,
   $tomcat_user                = $syncope::tomcat_user,
   $tomcat_group               = $syncope::tomcat_group,
+  $java_home                  = $syncope::java_home,
 
 ){
+
+  notice($java_home)
+  notice($catalina_base)
 
   $source_url = $tomcat_version ? {
     '7'     => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.69/bin/apache-tomcat-7.0.69.tar.gz',
@@ -20,7 +23,7 @@ class syncope::install (
   unless defined(File['/opt/tomcat']){
     file{ '/opt/tomcat':
       ensure => 'link',
-      target => $catalina_base
+      target => $syncope_catalina_base
     }
   }
 
@@ -31,13 +34,13 @@ class syncope::install (
   } ->
 
   tomcat::instance { 'syncope':
-    install_from_source => true,
+    install_from_source => $tomcat_install_from_source,
     source_url          => $source_url,
-    manage_user         => true,
-    manage_group        => true,
-    user                => 'tomcat',
-    group               => 'tomcat',
-    catalina_base       => $catalina_base,
+    manage_user         => $tomcat_manage_user,
+    manage_group        => $tomcat_manage_group,
+    user                => $tomcat_user,
+    group               => $tomcat_group,
+    catalina_base       => $syncope_catalina_base,
     java_home           => '/usr/java/default',
   } ->
 
