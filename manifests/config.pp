@@ -1,10 +1,12 @@
 class syncope::config (
 
-  $jmx_enabled = $syncope::jmx_enabled,
-  $cluster_enable = $syncope::cluster_enable,
-  $catalina_base = $syncope::catalina_base,
-  $application_path = $syncope::application_path
-
+  $jmx_enabled                = $syncope::jmx_enabled,
+  $cluster_enable             = $syncope::cluster_enable,
+  $catalina_base              = $syncope::catalina_base,
+  $application_path           = $syncope::application_path,
+  $postgres_jdbc_syncope_url  = $syncope::postgres_jdbc_syncope_url,
+  $postgres_password          = $syncope::postgres_password,
+  $admin_password             = $syncope::admin_password,
 ) {
 
 
@@ -14,7 +16,7 @@ class syncope::config (
     host_ensure           => 'present',
     host_name             => 'localhost',
     parent_service        => 'Catalina',
-    additional_attributes => { 'unpackWARs'=>'true', 'autoDeploy'=>'true'},
+    additional_attributes => { 'unpackWARs' => 'true', 'autoDeploy' => 'true'},
   }
 
 
@@ -30,7 +32,7 @@ class syncope::config (
       group   => 'tomcat',
       mode    => '0664';
     "${application_path}/syncope/WEB-INF/classes/content.xml":
-      source  => "puppet:///modules/syncope/WEB-INF/classes/content.xml",
+      source  => 'puppet:///modules/syncope/WEB-INF/classes/content.xml',
       owner   => 'tomcat',
       group   => 'tomcat',
   }

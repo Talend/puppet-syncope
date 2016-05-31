@@ -44,20 +44,27 @@
 #
 class syncope(
 
-  $java_home = $syncope::params::java_home,
-  $postgres_username = $syncope::params::postgres_username,
-  $postgres_password = $syncope::params::postgres_password,
-  $postgres_node = $syncope::params::postgres_node,
-  $postgres_port = $syncope::params::postgres_port,
-  $postgres_db_name = $syncope::params::postgres_db_name,
-  $admin_password = $syncope::params::admin_password,
-  $java_xmx = undef,
-  $jmx_enabled = $syncope::params::jmx_enabled,
-  $cluster_enable = $syncope::params::cluster_enable,
-  $syncope_nodes = undef,
-  $catalina_base = $syncope::params::catalina_base,
-  $application_path= $syncope::params::application_path
-
+  $java_home                  = $syncope::params::java_home,
+  $java_xmx                   = undef,
+  $jmx_enabled                = $syncope::params::jmx_enabled,
+  $cluster_enable             = $syncope::params::cluster_enable,
+  $catalina_base              = $syncope::params::catalina_base,
+  $application_path           = $syncope::params::application_path,
+  $postgres_username          = $syncope::params::postgres_username,
+  $postgres_password          = $syncope::params::postgres_password,
+  $postgres_node              = $syncope::params::postgres_node,
+  $postgres_port              = $syncope::params::postgres_port,
+  $postgres_db_name           = $syncope::params::postgres_db_name,
+  $postgres_jdbc_syncope_url  = $syncope::params::postgres_jdbc_syncope_url,
+  $admin_password             = $syncope::params::admin_password,
+  $url_re                     = $syncope::params::url_re,
+  $tomcat_install_from_source = $syncope::params::tomcat_install_from_source,
+  $tomcat_source_url          = $syncope::params::tomcat_source_url,
+  $tomcat_manage_user         = $syncope::params::tomcat_manage_user,
+  $tomcat_manage_group        = $syncope::params::tomcat_manage_group,
+  $tomcat_user                = $syncope::params::tomcat_user,
+  $tomcat_group               = $syncope::params::tomcat_group,
+  $tomcat_version             = '8'
 
 
 ) inherits syncope::params {

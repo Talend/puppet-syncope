@@ -5,6 +5,8 @@ class syncope::params {
   $java_xmx_default = floor($::memorysize_mb * 0.70)
   $java_xmx_real = pick($java_xmx, $java_xmx_default)
   $java_opts="\"-Xmx${java_xmx_real}m\""
+  $catalina_base = '/opt/apache-tomcat/syncope'
+  $application_path = "${catalina_base}/webapps"
 
   $postgres_username='syncope'
   $postgres_password = undef
@@ -13,14 +15,20 @@ class syncope::params {
   $postgres_db_name = 'syncope'
   $postgres_jdbc_syncope_url = "jdbc:postgresql://${postgres_node}:${postgres_port}/${postgres_db_name}"
 
-  $admin_password = 'undef'
+  $tomcat_install_from_source = true
+  $tomcat_source_url          = $source_url
+  $tomcat_manage_user         = true
+  $tomcat_manage_group        = true
+  $tomcat_user                = 'tomcat'
+  $tomcat_group               = 'tomcat'
+  $tomcat_catalina_base       = $catalina_base
+  $tomcat_java_home           = $java_home
 
+  $admin_password = 'undef'
   $cluster_enable = false
-  $syncope_nodes = undef
   $jmx_enabled = false
   $url_re = '^(jdbc:postgresql?:\/\/)?([\da-z\.-]+):(\d+)?([\/\w \.-]*)*\/?$'
-  $catalina_base = '/opt/tomcat'
-  $application_path = "${catalina_base}/webapps"
+
 
 
 }

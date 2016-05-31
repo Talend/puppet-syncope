@@ -4,10 +4,12 @@ fixtures:
   forge_modules:
     tomcat:
       repo: "puppetlabs/tomcat"
-      ref: "1.4.1"
+      ref: "1.5.0"
     selinux: "jfryman/selinux"
     stdlib: "puppetlabs/stdlib"
-    java: "puppetlabs/java"
+    java:
+      repo: "puppetlabs/java"
+      ref: "1.5.0"
     concat: "puppetlabs/concat"
     awscli: "jdowning/awscli"
     epel: "stahnma/epel"
@@ -15,3 +17,4 @@ fixtures:
     staging: "nanliu/staging"
     apt: "puppetlabs/apt"
     inifile: "puppetlabs/inifile"
+    archive: "puppet-archive"
