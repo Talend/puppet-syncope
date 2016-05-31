@@ -19,7 +19,8 @@ class syncope::params {
   $syncope_nodes = undef
   $jmx_enabled = false
   $url_re = '^(jdbc:postgresql?:\/\/)?([\da-z\.-]+):(\d+)?([\/\w \.-]*)*\/?$'
-  $application_path = '/opt/tomcat/webapps'
+  $catalina_base = '/opt/tomcat'
+  $application_path = "${catalina_base}/webapps"
 
 
 }
