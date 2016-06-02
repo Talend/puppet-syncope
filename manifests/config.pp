@@ -1,7 +1,5 @@
 class syncope::config (
 
-  $jmx_enabled                = $syncope::jmx_enabled,
-  $cluster_enable             = $syncope::cluster_enable,
   $catalina_base              = $syncope::catalina_base,
   $application_path           = $syncope::application_path,
   $postgres_jdbc_syncope_url  = $syncope::postgres_jdbc_syncope_url,
@@ -56,19 +54,4 @@ class syncope::config (
       setting => 'adminPassword',
       value   => $admin_password,
   }
-
-  # TODO this is a tomcat setting
-  if $jmx_enabled {
-
-    tomcat::config::server::listener { 'syncope-jmx':
-      catalina_base         => $catalina_base,
-      listener_ensure       => present,
-      class_name            => 'org.apache.catalina.mbeans.JmxRemoteLifecycleListener',
-      additional_attributes => {
-        'rmiRegistryPortPlatform' => '10001',
-        'rmiServerPortPlatform'   => '10002',
-      },
-    }
-  }
-
 }

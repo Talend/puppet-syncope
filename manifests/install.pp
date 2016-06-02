@@ -21,7 +21,7 @@ class syncope::install (
     }
   }
 
-  java::oracle { 'jdk8' :
+  java::oracle { 'jre' :
     ensure  => 'present',
     version => '8',
     java_se => 'jre',

@@ -44,10 +44,6 @@
 #
 class syncope(
 
-  $java_home                  = $syncope::params::java_home,
-  $java_xmx                   = undef,
-  $jmx_enabled                = $syncope::params::jmx_enabled,
-  $cluster_enable             = $syncope::params::cluster_enable,
   $catalina_base              = $syncope::params::catalina_base,
   $application_path           = $syncope::params::application_path,
   $postgres_username          = $syncope::params::postgres_username,
@@ -64,14 +60,22 @@ class syncope(
   $tomcat_manage_group        = $syncope::params::tomcat_manage_group,
   $tomcat_user                = $syncope::params::tomcat_user,
   $tomcat_group               = $syncope::params::tomcat_group,
-  $tomcat_version             = '8'
-
+  $tomcat_version             = '8',
+  $manage_repos               = false,
+  $repo_class                 = undef
 
 ) inherits syncope::params {
 
   validate_re($postgres_jdbc_syncope_url, $url_re, "postgres  url is not valid url. ${postgres_jdbc_syncope_url}")
-  validate_bool($jmx_enabled)
 
+  if $manage_repos {
+    if $repo_class == undef {
+      fail('If manage repo is set to true, "repo_class" must provided')
+    } else {
+      include $repo_class
+      Class[$repo_class] -> Class['Syncope::Install']
+    }
+  }
 
   class { 'syncope::install': } ->
   class { 'syncope::config': } ~>

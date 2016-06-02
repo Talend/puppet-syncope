@@ -1,10 +1,8 @@
 class syncope::params {
 
   $java_home = '/usr/java/default'
-  $java_xmx = undef
-  $java_xmx_default = floor($::memorysize_mb * 0.70)
-  $java_xmx_real = pick($java_xmx, $java_xmx_default)
-  $java_opts="\"-Xmx${java_xmx_real}m\""
+  $java_xmx = floor($::memorysize_mb * 0.70)
+  $java_opts="\"-Xmx${java_xmx}m\""
   $catalina_base = '/opt/apache-tomcat/syncope'
   $application_path = "${catalina_base}/webapps"
 
@@ -20,14 +18,9 @@ class syncope::params {
   $tomcat_manage_group        = true
   $tomcat_user                = 'tomcat'
   $tomcat_group               = 'tomcat'
-  $tomcat_catalina_base       = '/opt/apache-tomcat/syncope'
-  $tomcat_java_home           = '/usr/java/default'
 
-  $admin_password = 'undef'
+  $admin_password = 'password'
   $cluster_enable = false
-  $jmx_enabled = false
   $url_re = '^(jdbc:postgresql?:\/\/)?([\da-z\.-]+):(\d+)?([\/\w \.-]*)*\/?$'
-
-
 
 }

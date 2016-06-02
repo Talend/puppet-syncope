@@ -94,3 +94,7 @@ fabric.properties
 
 # Created by .ignore support plugin (hsz.mobi)
 *.swp
+.vagrant
+log
+spec/fixtures
+
