@@ -1,0 +1,4 @@
+REVIEWBOARD_URL = "https://review.tipaas.com"
+REPOSITORY = "puppet-syncope"
+BRANCH = "master"
+LAND_DEST_BRANCH = "master"
