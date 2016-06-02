@@ -1,6 +1,4 @@
 class syncope::install (
-
-
   $syncope_catalina_base      = $syncope::catalina_base,
   $tomcat_install_from_source = $syncope::tomcat_install_from_source,
   $tomcat_version             = $syncope::tomcat_version,
@@ -9,11 +7,7 @@ class syncope::install (
   $tomcat_user                = $syncope::tomcat_user,
   $tomcat_group               = $syncope::tomcat_group,
   $java_home                  = $syncope::java_home,
-
 ){
-
-  notice($java_home)
-  notice($catalina_base)
 
   $source_url = $tomcat_version ? {
     '7'     => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.69/bin/apache-tomcat-7.0.69.tar.gz',

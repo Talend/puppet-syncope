@@ -16,7 +16,10 @@ class syncope::config (
     host_ensure           => 'present',
     host_name             => 'localhost',
     parent_service        => 'Catalina',
-    additional_attributes => { 'unpackWARs' => 'true', 'autoDeploy' => 'true'},
+    additional_attributes => {
+      'unpackWARs' => true,
+      'autoDeploy' => true
+    },
   }
 
 
