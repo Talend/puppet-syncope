@@ -51,9 +51,7 @@ class syncope(
   $postgres_node              = $syncope::params::postgres_node,
   $postgres_port              = $syncope::params::postgres_port,
   $postgres_db_name           = $syncope::params::postgres_db_name,
-  $postgres_jdbc_syncope_url  = $syncope::params::postgres_jdbc_syncope_url,
   $admin_password             = $syncope::params::admin_password,
-  $url_re                     = $syncope::params::url_re,
   $tomcat_install_from_source = $syncope::params::tomcat_install_from_source,
   $tomcat_source_url          = $syncope::params::tomcat_source_url,
   $tomcat_manage_user         = $syncope::params::tomcat_manage_user,
@@ -66,8 +64,6 @@ class syncope(
 
 ) inherits syncope::params {
 
-  validate_re($postgres_jdbc_syncope_url, $url_re, "postgres  url is not valid url. ${postgres_jdbc_syncope_url}")
-
   if $manage_repos {
     if $repo_class == undef {
       fail('If manage repo is set to true, "repo_class" must provided')
@@ -77,9 +73,17 @@ class syncope(
     }
   }
 
-  class { 'syncope::install': } ->
-  class { 'syncope::config': } ~>
-  class { 'syncope::service': } ->
-  Class['syncope']
+  anchor { 'syncope::begin': }
+  anchor { 'syncope::end': }
+
+  class { 'syncope::install': }
+  class { 'syncope::config': }
+  class { 'syncope::service': }
+
+  Anchor['syncope::begin'] ->
+    Class['syncope::install'] ->
+    Class['syncope::config'] ~>
+    Class['syncope::service'] ->
+  Anchor['syncope::end']
 
 }

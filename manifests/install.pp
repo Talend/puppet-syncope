@@ -21,19 +21,10 @@ class syncope::install (
     }
   }
 
-  java::oracle { 'jre' :
-    ensure  => 'present',
-    version => '8',
-    java_se => 'jre',
-  } ->
 
   tomcat::instance { 'syncope':
     install_from_source => $tomcat_install_from_source,
     source_url          => $source_url,
-    manage_user         => $tomcat_manage_user,
-    manage_group        => $tomcat_manage_group,
-    user                => $tomcat_user,
-    group               => $tomcat_group,
     catalina_base       => $syncope_catalina_base,
     java_home           => '/usr/java/default',
   } ->

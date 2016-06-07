@@ -11,7 +11,6 @@ class syncope::params {
   $postgres_node = 'localhost'
   $postgres_port = 5432
   $postgres_db_name = 'syncope'
-  $postgres_jdbc_syncope_url = "jdbc:postgresql://${postgres_node}:${postgres_port}/${postgres_db_name}"
 
   $tomcat_install_from_source = true
   $tomcat_manage_user         = true
@@ -19,8 +18,7 @@ class syncope::params {
   $tomcat_user                = 'tomcat'
   $tomcat_group               = 'tomcat'
 
-  $admin_password = 'password'
+  $admin_password = sha1('password')
   $cluster_enable = false
-  $url_re = '^(jdbc:postgresql?:\/\/)?([\da-z\.-]+):(\d+)?([\/\w \.-]*)*\/?$'
 
 }

@@ -21,6 +21,14 @@ class syncope::config (
   }
 
 
+  $default_apps = [
+    "${catalina_base}/webapps/docs",
+    "${catalina_base}/webapps/examples",
+    "${catalina_base}/webapps/host-manager",
+    "${catalina_base}/webapps/manager",
+    "${catalina_base}/webapps/ROOT",
+  ]
+
   file {
     "${catalina_base}/logs/velocity.log":
       ensure  => file,
@@ -32,6 +40,9 @@ class syncope::config (
       owner   => 'tomcat',
       group   => 'tomcat',
       mode    => '0664';
+    $default_apps:
+      ensure => absent,
+      force  => true
   }
 
   ini_setting {

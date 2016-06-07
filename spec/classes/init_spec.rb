@@ -20,7 +20,6 @@ describe 'syncope' do
 
     # Test all default params are set
     it {
-      should contain_java__oracle('jre')
       should contain_class('syncope')
       should contain_class('syncope')
       should contain_class('syncope::install')
