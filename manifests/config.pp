@@ -45,6 +45,7 @@ class syncope::config (
       force  => true
   }
 
+  $_admin_password_sha1 = sha1($admin_password)
   ini_setting {
     'jpa_url':
       ensure  => present,
@@ -63,6 +64,6 @@ class syncope::config (
       path    => "${application_path}/syncope/WEB-INF/classes/security.properties",
       section => '',
       setting => 'adminPassword',
-      value   => $admin_password,
+      value   => $_admin_password_sha1,
   }
 }

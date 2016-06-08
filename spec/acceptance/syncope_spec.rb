@@ -8,16 +8,18 @@ describe 'syncope' do
       postgres_username => 'syncope',
       postgres_password => 'syncopepassword',
       postgres_node     => 'localhost',
-      postgres_db_name  => 'syncope'
+      postgres_db_name  => 'syncope',
+      admin_password    => 'testpassword'
   "
 
   it_should_behave_like 'syncope::running'
 
-  xit 'should have role AUTHENTICATED' do
+  describe command('/usr/bin/curl -v -f -X GET -u admin:testpassword http://localhost:8080/syncope/rest/roles 2>&1') do
+      its(:exit_status) { should eq 0 }
+      its(:stdout) { should include '<name>AUTHENTICATED</name>' }
+      its(:stdout) { should include '<name>ACCOUNT_ADMIN</name>' }
   end
 
-  xit 'should have role ACCOUNT_ADMIN' do
-  end
 
 end
 

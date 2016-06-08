@@ -18,7 +18,7 @@ class syncope::params {
   $tomcat_user                = 'tomcat'
   $tomcat_group               = 'tomcat'
 
-  $admin_password = sha1('password')
+  $admin_password = 'password'
   $cluster_enable = false
 
 }
