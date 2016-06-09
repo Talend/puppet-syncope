@@ -48,21 +48,25 @@ class syncope(
   $application_path           = $syncope::params::application_path,
   $postgres_username          = $syncope::params::postgres_username,
   $postgres_password          = $syncope::params::postgres_password,
-  $postgres_node              = $syncope::params::postgres_node,
+  $postgres_host              = $syncope::params::postgres_host,
   $postgres_port              = $syncope::params::postgres_port,
   $postgres_db_name           = $syncope::params::postgres_db_name,
   $admin_password             = $syncope::params::admin_password,
   $tomcat_install_from_source = $syncope::params::tomcat_install_from_source,
-  $tomcat_source_url          = $syncope::params::tomcat_source_url,
-  $tomcat_manage_user         = $syncope::params::tomcat_manage_user,
-  $tomcat_manage_group        = $syncope::params::tomcat_manage_group,
-  $tomcat_user                = $syncope::params::tomcat_user,
-  $tomcat_group               = $syncope::params::tomcat_group,
+  $syncope_version            = $syncope::params::syncope_version,
+  $syncope_console_version    = $syncope::params::syncope_console_version,
+  $sts_version                = $syncope::params::sts_version,
+  $java_opts                  = $syncope::params::java_opts,
   $tomcat_version             = '8',
   $manage_repos               = false,
   $repo_class                 = undef
 
 ) inherits syncope::params {
+
+  $tomcat_source_url = $tomcat_version ? {
+    '7'     => 'http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.69/bin/apache-tomcat-7.0.69.tar.gz',
+    default => 'http://archive.apache.org/dist/tomcat/tomcat-8/v8.5.2/bin/apache-tomcat-8.5.2.tar.gz'
+  }
 
   if $manage_repos {
     if $repo_class == undef {

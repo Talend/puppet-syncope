@@ -4,11 +4,11 @@ require 'beaker/puppet_install_helper'
 require 'rspec/retry'
 
 run_puppet_install_helper
-
 # Load shared acceptance examples
 base_spec_dir = Pathname.new(File.join(File.dirname(__FILE__), 'acceptance'))
 Dir[base_spec_dir.join('shared/**/*.rb')].sort.each{ |f| require f }
 
+fail 'PACKAGECLOUD_MASTER_TOKEN is required to run acceptance test' unless ENV.has_key? 'PACKAGECLOUD_MASTER_TOKEN'
 RSpec.configure do |c|
   proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
   c.formatter = :documentation

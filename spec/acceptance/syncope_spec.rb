@@ -7,7 +7,7 @@ describe 'syncope' do
       repo_class        => 'syncope::tic_repositories',
       postgres_username => 'syncope',
       postgres_password => 'syncopepassword',
-      postgres_node     => 'localhost',
+      postgres_host     => 'localhost',
       postgres_db_name  => 'syncope',
       admin_password    => 'testpassword'
   "
