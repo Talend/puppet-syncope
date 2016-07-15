@@ -5,8 +5,8 @@ packagecloud::repo { 'talend/other':
   master_token => $packagecloud_master_token
 } ->
 class { 'postgresql::server':
-  listen_addresses   => '*',
-  postgres_password  => 'testpassword'
+  listen_addresses  => '*',
+  postgres_password => 'testpassword'
 } ->
 postgresql::server::db { 'syncope':
   user     => 'syncope',
