@@ -72,8 +72,7 @@ class syncope(
     if $repo_class == undef {
       fail('If manage repo is set to true, "repo_class" must provided')
     } else {
-      include $repo_class
-      Class[$repo_class] -> Class['Syncope::Install']
+      require $repo_class
     }
   }
 

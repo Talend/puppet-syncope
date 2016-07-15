@@ -1,12 +1,21 @@
-source ENV['GEM_SOURCE'] || 'https://rubygems.org'
+source 'http://rubygems.org'
 
-gem 'metadata-json-lint'
-gem 'puppet', '3.8.6'
-gem 'puppetlabs_spec_helper', '>= 1.0.0'
-gem 'puppet-lint', '>= 1.0.0'
-gem 'facter', '>= 1.7.0'
-gem 'rspec-puppet'
-gem 'beaker'
-gem 'beaker-rspec'
-gem 'beaker-puppet_install_helper'
-gem 'rspec-retry'
+gem 'puppet', '~> 3.8'
+gem 'rake'
+
+group :test do
+  gem 'metadata-json-lint'
+  gem 'puppetlabs_spec_helper'
+end
+
+group :development do
+  gem 'vagrant-wrapper'
+  gem 'kitchen-vagrant'
+end
+
+group :system_tests do
+  gem 'librarian-puppet'
+  gem 'test-kitchen'
+  gem 'kitchen-puppet'
+  gem 'kitchen-sync'
+end

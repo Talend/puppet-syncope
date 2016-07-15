@@ -1,0 +1,21 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: puppet_apply
+  manifests_path: test/integration
+  ignore_spec_fixtures: true
+
+transport:
+  name: sftp
+
+platforms:
+  - name: centos-7.2
+
+suites:
+  - name: default
+    provisioner:
+      manifest: default/init.pp
+      custom_facts:
+        packagecloud_master_token: <%= ENV['PACKAGECLOUD_MASTER_TOKEN'] %>
