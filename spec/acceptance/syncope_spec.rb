@@ -1,18 +1,10 @@
-require 'spec_helper_acceptance'
+require 'spec_helper'
 
 describe 'syncope' do
 
-  it_should_behave_like 'syncope::installed', "
-      manage_repos      => true,
-      repo_class        => 'syncope::tic_repositories',
-      postgres_username => 'syncope',
-      postgres_password => 'syncopepassword',
-      postgres_host     => 'localhost',
-      postgres_db_name  => 'syncope',
-      admin_password    => 'testpassword'
-  "
-
-  it_should_behave_like 'syncope::running'
+  describe port(8080) do
+    it { should be_listening }
+  end
 
   describe command('/usr/bin/curl -v -f -X GET -u admin:testpassword http://localhost:8080/syncope/rest/roles 2>&1') do
       its(:exit_status) { should eq 0 }
@@ -20,6 +12,4 @@ describe 'syncope' do
       its(:stdout) { should include '<name>ACCOUNT_ADMIN</name>' }
   end
 
-
 end
-

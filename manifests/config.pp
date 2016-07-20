@@ -40,15 +40,15 @@ class syncope::config (
 
   file {
     "${catalina_base}/logs/velocity.log":
-      ensure  => file,
-      owner   => 'tomcat',
-      group   => 'tomcat',
-      mode    => '0664';
+      ensure => file,
+      owner  => 'tomcat',
+      group  => 'tomcat',
+      mode   => '0664';
     "${catalina_base}/logs/console.log":
-      ensure  => file,
-      owner   => 'tomcat',
-      group   => 'tomcat',
-      mode    => '0664';
+      ensure => file,
+      owner  => 'tomcat',
+      group  => 'tomcat',
+      mode   => '0664';
     $default_apps:
       ensure => absent,
       backup => false,

@@ -9,4 +9,5 @@ spec/fixtures
 .kitchen/
 .kitchen.local.yml
 .tmp/
+build/
 modules/
