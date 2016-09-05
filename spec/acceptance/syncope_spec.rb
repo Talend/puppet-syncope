@@ -12,4 +12,8 @@ describe 'syncope' do
       its(:stdout) { should include '<name>ACCOUNT_ADMIN</name>' }
   end
 
+  describe file('/opt/tomcat/webapps/sts/WEB-INF/beans.xml') do
+    its(:content) { should include '<property name="password" value="testpassword"/>' }
+  end
+
 end
