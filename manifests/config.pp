@@ -80,4 +80,13 @@ class syncope::config (
       setting => 'adminPassword',
       value   => $_admin_password_sha1,
   }
+
+  augeas { 'set syncope sts claimsHandler password':
+    lens    => 'Xml.lns',
+    incl    => '/opt/tomcat/webapps/sts/WEB-INF/beans.xml',
+    context => '/files/opt/tomcat/webapps/sts/WEB-INF/beans.xml/beans',
+    changes => [
+      "set bean[#attribute/id='claimsHandler']/property[#attribute/name='password']/#attribute/value ${admin_password}"
+    ],
+  }
 }
