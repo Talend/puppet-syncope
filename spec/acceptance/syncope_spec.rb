@@ -16,4 +16,8 @@ describe 'syncope' do
     its(:content) { should include '<property name="password" value="testpassword"/>' }
   end
 
+  describe file('/opt/tomcat/webapps/sts/WEB-INF/classes/user.properties') do
+    its(:content) { should include 'admin=testpassword' }
+  end
+
 end
