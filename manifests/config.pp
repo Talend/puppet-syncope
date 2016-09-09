@@ -89,4 +89,14 @@ class syncope::config (
       "set bean[#attribute/id='claimsHandler']/property[#attribute/name='password']/#attribute/value ${admin_password}"
     ],
   }
+
+  $user_properties_username = 'admin'
+  $user_properties_password = $admin_password
+  file { '/opt/tomcat/webapps/sts/WEB-INF/classes/user.properties':
+    content => template('syncope/user.properties.erb'),
+    owner   => 'tomcat',
+    group   => 'tomcat',
+    mode    => '0660'
+  }
+
 }
