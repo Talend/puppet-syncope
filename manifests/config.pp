@@ -93,9 +93,16 @@ class syncope::config (
       lens    => 'Xml.lns',
       incl    => '/opt/apache-tomcat/syncope/webapps/syncope/WEB-INF/classes/persistenceContextEMFactory.xml',
       changes => [
-        "set beans/bean[#attribute/id = 'entityManagerFactory']/property[#attribute/name = 'jpaPropertyMap']/map/entry[#attribute/key = 'openjpa.DataCache']/#attribute/value 'false'",
-        "set beans/bean[#attribute/id = 'entityManagerFactory']/property[#attribute/name = 'jpaPropertyMap']/map/entry[#attribute/key = 'openjpa.QueryCache']/#attribute/value 'false'",
-        "rm beans/bean[#attribute/id = 'entityManagerFactory']/property[#attribute/name = 'jpaPropertyMap']/map/entry[#attribute/key = 'openjpa.RemoteCommitProvider']"
+        "set beans/bean[#attribute/id ='entityManagerFactory']\
+/property[#attribute/name = 'jpaPropertyMap']\
+/map/entry[#attribute/key = 'openjpa.DataCache']/#attribute/value 'false'",
+        "set beans/bean[#attribute/id = 'entityManagerFactory']\
+/property[#attribute/name = 'jpaPropertyMap']\
+/map/entry[#attribute/key = 'openjpa.QueryCache']\
+/#attribute/value 'false'",
+        "rm beans/bean[#attribute/id = 'entityManagerFactory']\
+/property[#attribute/name = 'jpaPropertyMap']\
+/map/entry[#attribute/key = 'openjpa.RemoteCommitProvider']"
     ]
   }
 
@@ -107,5 +114,4 @@ class syncope::config (
     group   => 'tomcat',
     mode    => '0660'
   }
-
 }
