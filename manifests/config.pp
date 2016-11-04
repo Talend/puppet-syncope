@@ -81,13 +81,22 @@ class syncope::config (
       value   => $_admin_password_sha1,
   }
 
-  augeas { 'set syncope sts claimsHandler password':
-    lens    => 'Xml.lns',
-    incl    => '/opt/tomcat/webapps/sts/WEB-INF/beans.xml',
-    context => '/files/opt/tomcat/webapps/sts/WEB-INF/beans.xml/beans',
-    changes => [
+  augeas {
+    'set syncope sts claimsHandler password':
+      lens    => 'Xml.lns',
+      incl    => '/opt/tomcat/webapps/sts/WEB-INF/beans.xml',
+      context => '/files/opt/tomcat/webapps/sts/WEB-INF/beans.xml/beans',
+      changes => [
       "set bean[#attribute/id='claimsHandler']/property[#attribute/name='password']/#attribute/value ${admin_password}"
-    ],
+      ];
+    'disable jpa caches':
+      lens    => 'Xml.lns',
+      incl    => '/opt/apache-tomcat/syncope/webapps/syncope/WEB-INF/classes/persistenceContextEMFactory.xml',
+      changes => [
+        "set beans/bean[#attribute/id = 'entityManagerFactory']/property[#attribute/name = 'jpaPropertyMap']/map/entry[#attribute/key = 'openjpa.DataCache']/#attribute/value 'false'",
+        "set beans/bean[#attribute/id = 'entityManagerFactory']/property[#attribute/name = 'jpaPropertyMap']/map/entry[#attribute/key = 'openjpa.QueryCache']/#attribute/value 'false'",
+        "rm beans/bean[#attribute/id = 'entityManagerFactory']/property[#attribute/name = 'jpaPropertyMap']/map/entry[#attribute/key = 'openjpa.RemoteCommitProvider']"
+    ]
   }
 
   $user_properties_username = 'admin'
