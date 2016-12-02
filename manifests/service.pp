@@ -1,7 +1,7 @@
 class syncope::service (
 
   $catalina_base  = $syncope::catalina_base,
-  $service_ensure = running,
+  $service_ensure = $syncope::service_ensure,
 
 ) {
 
