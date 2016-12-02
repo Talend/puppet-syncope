@@ -9,6 +9,7 @@ class syncope::config (
   $admin_password             = $syncope::admin_password,
   $tomcat_version             = $syncope::tomcat_version,
   $java_opts                  = $syncope::java_opts
+
 ) {
 
   tomcat::config::server::host { 'localhost':
