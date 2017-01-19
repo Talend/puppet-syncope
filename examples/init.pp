@@ -19,12 +19,12 @@ postgresql::validate_db_connection { 'validate syncope connection':
   database_name     => 'syncope';
 } ->
 class { '::syncope':
-  manage_repos      => false,
-  postgres_username => 'syncope',
-  postgres_password => 'syncopepassword',
-  postgres_host     => 'localhost',
-  postgres_db_name  => 'syncope',
-  admin_password    => 'testpassword',
+  manage_repos         => false,
+  postgres_username    => 'syncope',
+  postgres_password    => 'syncopepassword',
+  postgres_host        => 'localhost',
+  postgres_db_name     => 'syncope',
+  admin_password       => 'testpassword',
   ams_security_db_host => 'ams_db_host',
   ams_security_db_name => 'ams_db_name',
   ams_security_db_user => 'ams_db_user',
