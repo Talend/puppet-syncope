@@ -21,4 +21,9 @@ class syncope::params {
 
   $admin_password = 'password'
 
+  $ams_security_db_host = 'localhost'
+  $ams_security_db_name = 'ams_name'
+  $ams_security_db_user = 'ams_user'
+  $ams_security_db_pass = 'ams_pass'
+
 }

@@ -34,6 +34,9 @@ class syncope::install (
     'syncope-sts':
       ensure  => $sts_version,
       require => File['/opt/tomcat'];
+    'activemq-security-service':
+      ensure  => present,
+      require => File['/opt/tomcat'];
   }
 
 }

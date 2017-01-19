@@ -8,7 +8,11 @@ class syncope::config (
   $postgres_db_name           = $syncope::postgres_db_name,
   $admin_password             = $syncope::admin_password,
   $tomcat_version             = $syncope::tomcat_version,
-  $java_opts                  = $syncope::java_opts
+  $java_opts                  = $syncope::java_opts,
+  $ams_security_db_host       = $syncope::ams_security_db_host,
+  $ams_security_db_name       = $syncope::ams_security_db_name,
+  $ams_security_db_user       = $syncope::ams_security_db_user,
+  $ams_security_db_pass       = $syncope::ams_security_db_pass,
 
 ) {
 
@@ -117,5 +121,32 @@ class syncope::config (
     owner   => 'tomcat',
     group   => 'tomcat',
     mode    => '0660'
+  }
+
+  ini_setting {
+    'ams_security_db_host':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/datasource.properties",
+      section => '',
+      setting => 'datasource.servername',
+      value   => $ams_security_db_host;
+    'ams_security_db_name':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/datasource.properties",
+      section => '',
+      setting => 'datasource.databasename',
+      value   => $ams_security_db_name;
+    'ams_security_db_user':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/datasource.properties",
+      section => '',
+      setting => 'datasource.username',
+      value   => $ams_security_db_user;
+    'ams_security_db_pass':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/datasource.properties",
+      section => '',
+      setting => 'datasource.password',
+      value   => $ams_security_db_pass;
   }
 }

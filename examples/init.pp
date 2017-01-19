@@ -24,5 +24,9 @@ class { '::syncope':
   postgres_password => 'syncopepassword',
   postgres_host     => 'localhost',
   postgres_db_name  => 'syncope',
-  admin_password    => 'testpassword'
+  admin_password    => 'testpassword',
+  ams_security_db_host => 'ams_db_host',
+  ams_security_db_name => 'ams_db_name',
+  ams_security_db_user => 'ams_db_user',
+  ams_security_db_pass => 'ams_db_pass',
 }

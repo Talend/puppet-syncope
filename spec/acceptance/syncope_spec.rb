@@ -20,4 +20,15 @@ describe 'syncope' do
     its(:content) { should include 'admin=testpassword' }
   end
 
+  describe file('/opt/tomcat/webapps/activemq-security-service/WEB-INF/classes/datasource.properties') do
+    its(:content) { should include 'datasource.servername=ams_db_host' }
+    its(:content) { should include 'datasource.databasename=ams_db_name' }
+    its(:content) { should include 'datasource.username=ams_db_user' }
+    its(:content) { should include 'datasource.password=ams_db_pass' }
+  end
+
+  describe command('/usr/bin/curl -I http://localhost:8080/activemq-security-service/authenticate') do
+    its(:stdout) { should include 'HTTP/1.1 401' }
+  end
+
 end

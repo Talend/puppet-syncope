@@ -17,6 +17,10 @@ class syncope (
   $manage_repos               = false,
   $repo_class                 = undef,
   $service_ensure             = running,
+  $ams_security_db_host       = $syncope::params::ams_security_db_host,
+  $ams_security_db_name       = $syncope::params::ams_security_db_name,
+  $ams_security_db_user       = $syncope::params::ams_security_db_user,
+  $ams_security_db_pass       = $syncope::params::ams_security_db_pass,
 
 ) inherits syncope::params {
 
