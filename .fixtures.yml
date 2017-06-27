@@ -5,13 +5,21 @@ fixtures:
     tomcat:
       repo: "puppetlabs/tomcat"
       ref: "1.5.0"
-    stdlib: "puppetlabs/stdlib"
-    staging: "nanliu/staging"
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref: "4.12.0"
+    staging:
+      repo: "nanliu/staging"
+      ref: "1.0.3"
     java:
       repo: "puppetlabs/java"
       ref: "1.5.0"
-    concat: "puppetlabs/concat"
-    inifile: "puppetlabs/inifile"
+    concat:
+      repo: "puppetlabs/concat"
+      ref: "2.2.0"
+    inifile:
+      repo: "puppetlabs/inifile"
+      ref: "1.5.0"
     packagecloud:
       repo: "computology/packagecloud"
       ref: "0.3.0"
