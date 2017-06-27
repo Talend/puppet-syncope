@@ -31,4 +31,16 @@ describe 'syncope' do
     its(:stdout) { should include 'HTTP/1.1 401' }
   end
 
+  describe package('activemq-security-migration-v18to182') do
+    it { should be_installed }
+  end
+
+  describe package('activemq-security-migration-v18to20') do
+    it { should be_installed }
+  end
+
+  describe package('activemq-security-service') do
+    it { should be_installed }
+  end
+
 end
