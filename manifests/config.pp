@@ -171,61 +171,61 @@ class syncope::config (
       value   => $ams_security_db_pass;
     'ams_security_migration_18_db_url':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'postgresAddress',
       value   => "jdbc:postgresql://${ams_security_db_host}:5432/${ams_security_db_name}";
     'ams_security_migration_18_db_user':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'postgresUsername',
       value   => $ams_security_db_user;
     'ams_security_migration_18_db_pass':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'postgresPassword',
       value   => $ams_security_db_pass;
     'ams_security_migration_18_crypto_url':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'crypto.service.url',
       value   => $crypto_url;
     'ams_security_migration_18_crypto_user':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'crypto.service.username',
       value   => $crypto_user;
     'ams_security_migration_18_crypto_pass':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'crypto.service.password',
       value   => $crypto_pass;
     'ams_security_migration_20_db_url':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to20/migration.properties',
       section => '',
       setting => 'postgresAddress',
       value   => "jdbc:postgresql://${ams_security_db_host}:5432/${ams_security_db_name}";
     'ams_security_migration_20_db_user':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to20/migration.properties',
       section => '',
       setting => 'postgresUsername',
       value   => $ams_security_db_user;
     'ams_security_migration_20_db_pass':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to20/migration.properties',
       section => '',
       setting => 'postgresPassword',
       value   => $ams_security_db_pass;
     'ams_security_migration_20_crypto_url':
       ensure  => present,
-      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      path    => '/opt/activemq-security-migration-v18to20/migration.properties',
       section => '',
       setting => 'crypto.tpsvc.service.url',
       value   => $crypto_url;
