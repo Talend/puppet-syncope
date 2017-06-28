@@ -13,6 +13,9 @@ class syncope::config (
   $ams_security_db_name       = $syncope::ams_security_db_name,
   $ams_security_db_user       = $syncope::ams_security_db_user,
   $ams_security_db_pass       = $syncope::ams_security_db_pass,
+  $crypto_url                 = $syncope::crypto_url,
+  $crypto_user                = $syncope::crypto_user,
+  $crypto_pass                = $syncope::crypto_pass,
 
 ) {
 
@@ -124,6 +127,24 @@ class syncope::config (
   }
 
   ini_setting {
+    'ipaas_crypto_url':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg",
+      section => '',
+      setting => 'crypto.service.url',
+      value   => $crypto_url;
+    'ipaas_crypto_user':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg",
+      section => '',
+      setting => 'crypto.service.username',
+      value   => $crypto_user;
+    'ipaas_crypto_pass':
+      ensure  => present,
+      path    => "${application_path}/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg",
+      section => '',
+      setting => 'crypto.service.password',
+      value   => $crypto_pass;
     'ams_security_db_host':
       ensure  => present,
       path    => "${application_path}/activemq-security-service/WEB-INF/classes/datasource.properties",
@@ -148,5 +169,65 @@ class syncope::config (
       section => '',
       setting => 'datasource.password',
       value   => $ams_security_db_pass;
+    'ams_security_migration_18_db_url':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      section => '',
+      setting => 'postgresAddress',
+      value   => "jdbc:postgresql://${ams_security_db_host}:5432/${ams_security_db_name}";
+    'ams_security_migration_18_db_user':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      section => '',
+      setting => 'postgresUsername',
+      value   => $ams_security_db_user;
+    'ams_security_migration_18_db_pass':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      section => '',
+      setting => 'postgresPassword',
+      value   => $ams_security_db_pass;
+    'ams_security_migration_18_crypto_url':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      section => '',
+      setting => 'crypto.service.url',
+      value   => $crypto_url;
+    'ams_security_migration_18_crypto_user':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      section => '',
+      setting => 'crypto.service.username',
+      value   => $crypto_user;
+    'ams_security_migration_18_crypto_pass':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to182/migration.properties",
+      section => '',
+      setting => 'crypto.service.password',
+      value   => $crypto_pass;
+    'ams_security_migration_20_db_url':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      section => '',
+      setting => 'postgresAddress',
+      value   => "jdbc:postgresql://${ams_security_db_host}:5432/${ams_security_db_name}";
+    'ams_security_migration_20_db_user':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      section => '',
+      setting => 'postgresUsername',
+      value   => $ams_security_db_user;
+    'ams_security_migration_20_db_pass':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      section => '',
+      setting => 'postgresPassword',
+      value   => $ams_security_db_pass;
+    'ams_security_migration_20_crypto_url':
+      ensure  => present,
+      path    => "/opt/activemq-security-migration-v18to20/migration.properties",
+      section => '',
+      setting => 'crypto.tpsvc.service.url',
+      value   => $crypto_url;
   }
 }

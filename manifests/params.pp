@@ -26,4 +26,8 @@ class syncope::params {
   $ams_security_db_user = 'ams_user'
   $ams_security_db_pass = 'ams_pass'
 
+  $crypto_url  = 'not_configured'
+  $crypto_user = 'not_configured'
+  $crypto_pass = 'not_configured'
+
 }

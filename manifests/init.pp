@@ -21,6 +21,9 @@ class syncope (
   $ams_security_db_name       = $syncope::params::ams_security_db_name,
   $ams_security_db_user       = $syncope::params::ams_security_db_user,
   $ams_security_db_pass       = $syncope::params::ams_security_db_pass,
+  $crypto_url                 = $syncope::params::crypto_url,
+  $crypto_user                = $syncope::params::crypto_user,
+  $crypto_pass                = $syncope::params::crypto_pass,
 
 ) inherits syncope::params {
 

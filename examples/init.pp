@@ -29,4 +29,7 @@ class { '::syncope':
   ams_security_db_name => 'ams_db_name',
   ams_security_db_user => 'ams_db_user',
   ams_security_db_pass => 'ams_db_pass',
+  crypto_url           => 'crypto_url',
+  crypto_user          => 'crypto_user',
+  crypto_pass          => 'crypto_pass',
 }
