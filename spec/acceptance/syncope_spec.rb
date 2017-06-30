@@ -28,7 +28,7 @@ describe 'syncope' do
   end
 
   describe file('/opt/apache-tomcat/syncope/webapps/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg') do
-    its(:content) { should include 'crypto.service.url=crypto_url' }
+    its(:content) { should include 'crypto.service.url=ipaas_crypto_url' }
     its(:content) { should include 'crypto.service.username=crypto_user' }
     its(:content) { should include 'crypto.service.password=crypto_pass' }
   end
@@ -37,7 +37,7 @@ describe 'syncope' do
     its(:content) { should include 'postgresAddress=jdbc:postgresql://ams_db_host:5432/ams_db_name' }
     its(:content) { should include 'postgresUsername=ams_db_user' }
     its(:content) { should include 'postgresPassword=ams_db_pass' }
-    its(:content) { should include 'crypto.service.url=crypto_url' }
+    its(:content) { should include 'crypto.service.url=ipaas_crypto_url' }
     its(:content) { should include 'crypto.service.username=crypto_user' }
     its(:content) { should include 'crypto.service.password=crypto_pass' }
   end
@@ -46,7 +46,7 @@ describe 'syncope' do
     its(:content) { should include 'postgresAddress=jdbc:postgresql://ams_db_host:5432/ams_db_name' }
     its(:content) { should include 'postgresUsername=ams_db_user' }
     its(:content) { should include 'postgresPassword=ams_db_pass' }
-    its(:content) { should include 'crypto.tpsvc.service.url=crypto_url' }
+    its(:content) { should include 'crypto.tpsvc.service.url=tpsvc_crypto_url' }
   end
 
   describe command('/usr/bin/curl -I http://localhost:8080/activemq-security-service/authenticate') do
@@ -61,7 +61,11 @@ describe 'syncope' do
     it { should be_installed }
   end
 
-  describe package('activemq-security-service') do
+  describe package('activemq-security-service-v18to20') do
+    it { should be_installed }
+  end
+
+  describe package('activemq-security-service-v18to182') do
     it { should be_installed }
   end
 

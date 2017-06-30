@@ -34,9 +34,12 @@ class syncope::install (
     'syncope-sts':
       ensure  => $sts_version,
       require => File['/opt/tomcat'];
-    'activemq-security-service':
+    'activemq-security-service-v18to182':
       ensure  => present,
-      require => File['/opt/tomcat'];
+      require => User['tomcat'];
+    'activemq-security-service-v18to20':
+      ensure  => present,
+      require => User['tomcat'];
     'activemq-security-migration-v18to182':
       ensure  => present;
     'activemq-security-migration-v18to20':

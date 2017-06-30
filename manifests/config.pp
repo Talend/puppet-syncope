@@ -9,11 +9,14 @@ class syncope::config (
   $admin_password             = $syncope::admin_password,
   $tomcat_version             = $syncope::tomcat_version,
   $java_opts                  = $syncope::java_opts,
+  $amq_security_switch        = $syncope::amq_security_switch,
+  $ams_security_edition       = $syncope::ams_security_edition,
   $ams_security_db_host       = $syncope::ams_security_db_host,
   $ams_security_db_name       = $syncope::ams_security_db_name,
   $ams_security_db_user       = $syncope::ams_security_db_user,
   $ams_security_db_pass       = $syncope::ams_security_db_pass,
-  $crypto_url                 = $syncope::crypto_url,
+  $tpsvc_crypto_url           = $syncope::tpsvc_crypto_url,
+  $ipaas_crypto_url           = $syncope::ipaas_crypto_url,
   $crypto_user                = $syncope::crypto_user,
   $crypto_pass                = $syncope::crypto_pass,
 
@@ -126,25 +129,12 @@ class syncope::config (
     mode    => '0660'
   }
 
+  file { 'ams security link':
+    path   => "${application_path}/activemq-security-service",
+    ensure => link,
+    target => "/opt/activemq-security-service-${ams_security_edition}",
+  } ->
   ini_setting {
-    'ipaas_crypto_url':
-      ensure  => present,
-      path    => "${application_path}/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg",
-      section => '',
-      setting => 'crypto.service.url',
-      value   => $crypto_url;
-    'ipaas_crypto_user':
-      ensure  => present,
-      path    => "${application_path}/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg",
-      section => '',
-      setting => 'crypto.service.username',
-      value   => $crypto_user;
-    'ipaas_crypto_pass':
-      ensure  => present,
-      path    => "${application_path}/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg",
-      section => '',
-      setting => 'crypto.service.password',
-      value   => $crypto_pass;
     'ams_security_db_host':
       ensure  => present,
       path    => "${application_path}/activemq-security-service/WEB-INF/classes/datasource.properties",
@@ -192,7 +182,7 @@ class syncope::config (
       path    => '/opt/activemq-security-migration-v18to182/migration.properties',
       section => '',
       setting => 'crypto.service.url',
-      value   => $crypto_url;
+      value   => $ipaas_crypto_url;
     'ams_security_migration_18_crypto_user':
       ensure  => present,
       path    => '/opt/activemq-security-migration-v18to182/migration.properties',
@@ -228,6 +218,60 @@ class syncope::config (
       path    => '/opt/activemq-security-migration-v18to20/migration.properties',
       section => '',
       setting => 'crypto.tpsvc.service.url',
-      value   => $crypto_url;
+      value   => $tpsvc_crypto_url;
   }
+
+
+  if 'v18to20' == $ams_security_edition {
+    ini_setting {
+      'tpsvc_crypto_url':
+        ensure  => present,
+        path    => '/opt/activemq-security-service-v18to20/WEB-INF/classes/org.talend.ipaas.rt.tpsvc.crypto.client.cfg',
+        section => '',
+        setting => 'crypto.tpsvc.service.url',
+        value   => $tpsvc_crypto_url;
+    }
+  } elsif 'v18to182' == $ams_security_edition {
+    if 'on' == $amq_security_switch {
+      ini_setting {
+        'ipaas_crypto_url':
+          ensure  => present,
+          path    => '/opt/activemq-security-service-v18to182/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg',
+          section => '',
+          setting => 'crypto.service.url',
+          value   => $ipaas_crypto_url;
+        'ipaas_crypto_user':
+          ensure  => present,
+          path    => '/opt/activemq-security-service-v18to182/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg',
+          section => '',
+          setting => 'crypto.service.username',
+          value   => $crypto_user;
+        'ipaas_crypto_pass':
+          ensure  => present,
+          path    => '/opt/activemq-security-service-v18to182/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg',
+          section => '',
+          setting => 'crypto.service.password',
+          value   => $crypto_pass;
+      }
+    } else {
+      ini_setting {
+        'ipaas_crypto_url':
+          ensure  => absent,
+          path    => '/opt/activemq-security-service-v18to182/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg',
+          section => '',
+          setting => 'crypto.service.url';
+        'ipaas_crypto_user':
+          ensure  => absent,
+          path    => '/opt/activemq-security-service-v18to182/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg',
+          section => '',
+          setting => 'crypto.service.username';
+        'ipaas_crypto_pass':
+          ensure  => absent,
+          path    => '/opt/activemq-security-service-v18to182/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg',
+          section => '',
+          setting => 'crypto.service.password';
+      }
+    }
+  }
+
 }

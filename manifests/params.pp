@@ -21,13 +21,16 @@ class syncope::params {
 
   $admin_password = 'password'
 
+  $amq_security_switch  = 'off'
+  $ams_security_edition = 'v18to182'
   $ams_security_db_host = 'localhost'
   $ams_security_db_name = 'ams_name'
   $ams_security_db_user = 'ams_user'
   $ams_security_db_pass = 'ams_pass'
 
-  $crypto_url  = 'not_configured'
-  $crypto_user = 'not_configured'
-  $crypto_pass = 'not_configured'
+  $tpsvc_crypto_url  = ''
+  $ipaas_crypto_url  = ''
+  $crypto_user       = 'not_configured'
+  $crypto_pass       = 'not_configured'
 
 }
