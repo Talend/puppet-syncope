@@ -130,8 +130,8 @@ class syncope::config (
   }
 
   file { 'ams security link':
-    path   => "${application_path}/activemq-security-service",
     ensure => link,
+    path   => "${application_path}/activemq-security-service",
     target => "/opt/activemq-security-service-${ams_security_edition}",
   } ->
   ini_setting {
