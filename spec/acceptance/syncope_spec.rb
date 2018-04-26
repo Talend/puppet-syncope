@@ -27,25 +27,7 @@ describe 'syncope' do
     its(:content) { should include 'datasource.password=ams_db_pass' }
   end
 
-  describe file('/opt/apache-tomcat/syncope/webapps/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.crypto.client.cfg') do
-    its(:content) { should include 'crypto.service.url=ipaas_crypto_url' }
-    its(:content) { should include 'crypto.service.username=crypto_user' }
-    its(:content) { should include 'crypto.service.password=crypto_pass' }
-  end
-
-  describe file('/opt/activemq-security-migration-v18to182/migration.properties') do
-    its(:content) { should include 'postgresAddress=jdbc:postgresql://ams_db_host:5432/ams_db_name' }
-    its(:content) { should include 'postgresUsername=ams_db_user' }
-    its(:content) { should include 'postgresPassword=ams_db_pass' }
-    its(:content) { should include 'crypto.service.url=ipaas_crypto_url' }
-    its(:content) { should include 'crypto.service.username=crypto_user' }
-    its(:content) { should include 'crypto.service.password=crypto_pass' }
-  end
-
-  describe file('/opt/activemq-security-migration-v18to20/migration.properties') do
-    its(:content) { should include 'postgresAddress=jdbc:postgresql://ams_db_host:5432/ams_db_name' }
-    its(:content) { should include 'postgresUsername=ams_db_user' }
-    its(:content) { should include 'postgresPassword=ams_db_pass' }
+  describe file('/opt/apache-tomcat/syncope/webapps/activemq-security-service/WEB-INF/classes/org.talend.ipaas.rt.tpsvc.crypto.client.cfg') do
     its(:content) { should include 'crypto.tpsvc.service.url=tpsvc_crypto_url' }
   end
 
@@ -53,19 +35,7 @@ describe 'syncope' do
     its(:stdout) { should include 'HTTP/1.1 401' }
   end
 
-  describe package('activemq-security-migration-v18to182') do
-    it { should be_installed }
-  end
-
-  describe package('activemq-security-migration-v18to20') do
-    it { should be_installed }
-  end
-
-  describe package('activemq-security-service-v18to20') do
-    it { should be_installed }
-  end
-
-  describe package('activemq-security-service-v18to182') do
+  describe package('activemq-security-service') do
     it { should be_installed }
   end
 
