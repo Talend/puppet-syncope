@@ -37,8 +37,8 @@ ${SCRIPT_NAME} [options]
   launch all the test but (re)install everything before: ${SCRIPT_NAME} -c
   list the tests availables: ${SCRIPT_NAME} -l
   launch a syntax check: ${SCRIPT_NAME} -s
-  launch a specific test:  ${SCRIPT_NAME} -t "default-centos-72"
-  redo test after modifications: ${SCRIPT_NAME} -r "default-centos-72"
+  launch a specific test:  ${SCRIPT_NAME} -t "default-centos-74"
+  redo test after modifications: ${SCRIPT_NAME} -r "default-centos-74"
 
   Tips:
     if the syntax check fail with alignment errors, maybe you can fix it with the following command for each file in error:
