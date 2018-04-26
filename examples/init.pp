@@ -25,13 +25,9 @@ class { '::syncope':
   postgres_host        => 'localhost',
   postgres_db_name     => 'syncope',
   admin_password       => 'testpassword',
-  amq_security_switch  => 'on',
   ams_security_db_host => 'ams_db_host',
   ams_security_db_name => 'ams_db_name',
   ams_security_db_user => 'ams_db_user',
   ams_security_db_pass => 'ams_db_pass',
   tpsvc_crypto_url     => 'tpsvc_crypto_url',
-  ipaas_crypto_url     => 'ipaas_crypto_url',
-  crypto_user          => 'crypto_user',
-  crypto_pass          => 'crypto_pass',
 }

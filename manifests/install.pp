@@ -9,7 +9,8 @@ class syncope::install (
   $tomcat_group               = $syncope::tomcat_group,
   $syncope_version            = $syncope::syncope_version,
   $syncope_console_version    = $syncope::syncope_console_version,
-  $sts_version                = $syncope::sts_version
+  $sts_version                = $syncope::sts_version,
+  $ams_security_version       = $syncope::ams_security_version
 ){
 
   file {'/opt/tomcat':
@@ -34,16 +35,9 @@ class syncope::install (
     'syncope-sts':
       ensure  => $sts_version,
       require => File['/opt/tomcat'];
-    'activemq-security-service-v18to182':
-      ensure  => present,
+    'activemq-security-service':
+      ensure  => $ams_security_version,
       require => User['tomcat'];
-    'activemq-security-service-v18to20':
-      ensure  => present,
-      require => User['tomcat'];
-    'activemq-security-migration-v18to182':
-      ensure  => present;
-    'activemq-security-migration-v18to20':
-      ensure  => present;
   }
 
 }
