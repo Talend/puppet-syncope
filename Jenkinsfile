@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Check') {
+        /*stage('Check') {
             steps {
                 container('ruby') {
                     script {
@@ -45,13 +45,14 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage('Test') {
             steps {
                 container('ruby') {
                     script {
                         sh """
+                        bundle exec kitchen test --concurrency=5 --destroy=always
                         bundle exec rake spec # Run spec tests in a clean fixtures directory
                         bundle exec rake acceptance # Run acceptance tests
                         """
