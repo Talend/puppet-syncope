@@ -56,9 +56,9 @@ describe 'syncope' do
     end
 
     it 'should have all the packages' do
-      should contain_package('syncope').with_ensure('1.2.1-11')
-      should contain_package('syncope-console').with_ensure('1.2.1-9')
-      should contain_package('syncope-sts').with_ensure('1.2.1-10')
+      should not contain_package('syncope').with_ensure('1.2.1-11')
+      should not contain_package('syncope-console').with_ensure('1.2.1-9')
+      should not contain_package('syncope-sts').with_ensure('1.2.1-10')
     end
 
     it 'should contain default admin passwords settings' do
