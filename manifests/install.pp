@@ -26,6 +26,15 @@ class syncope::install (
   } ->
 
   package {
+    # 'syncope':
+    #   ensure  => $syncope_version,
+    #   require => File['/opt/tomcat'];
+    # 'syncope-console':
+    #   ensure  => $syncope_console_version,
+    #   require => File['/opt/tomcat'];
+    # 'syncope-sts':
+    #   ensure  => $sts_version,
+    #   require => File['/opt/tomcat'];
     'activemq-security-service':
       ensure  => $ams_security_version,
       require => User['tomcat'];
