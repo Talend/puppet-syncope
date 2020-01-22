@@ -52,7 +52,7 @@ describe 'syncope' do
 
     it 'should precreate logs' do
       should contain_file('/opt/apache-tomcat/syncope/logs/console.log').with_ensure('file')
-      should contain_file('/opt/apache-tomcat/syncope/logs/velocity.log').with_ensure('file')
+      # should contain_file('/opt/apache-tomcat/syncope/logs/velocity.log').with_ensure('file')
     end
 
     ### syncope packages removal
