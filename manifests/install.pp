@@ -10,7 +10,7 @@ class syncope::install (
   $syncope_version            = $syncope::syncope_version,
   $syncope_console_version    = $syncope::syncope_console_version,
   $sts_version                = $syncope::sts_version,
-  $ams_security_version       = pick($syncope::ams_security_version, 'latest')
+  $ams_security_version       = $syncope::ams_security_version
 ){
 
   file {'/opt/tomcat':

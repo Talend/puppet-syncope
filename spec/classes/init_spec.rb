@@ -53,7 +53,6 @@ describe 'syncope' do
     it 'should precreate logs' do
       should contain_file('/opt/apache-tomcat/syncope/logs/console.log').with_ensure('file')
     end
-
   end
 
   context 'with manage_repos set to true and repo_class unset' do
