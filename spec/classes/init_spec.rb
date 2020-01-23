@@ -53,22 +53,6 @@ describe 'syncope' do
     it 'should precreate logs' do
       should contain_file('/opt/apache-tomcat/syncope/logs/console.log').with_ensure('file')
     end
-
-    it 'should contain default admin passwords settings' do
-      should contain_ini_setting('admin_password').with(
-        {:value => Digest::SHA1.hexdigest('password')}
-      )
-    end
-
-    it 'should contain correct jpa_url' do
-      should contain_ini_setting('jpa_url').with(
-        {:value => 'jdbc:postgresql://localhost:5432/syncope'}
-      )
-    end
-
-    it 'should contain correct pgpassword' do
-       should contain_ini_setting('pgpassword').with_value('syncope')
-    end
   end
 
   context 'with manage_repos set to true and repo_class unset' do
