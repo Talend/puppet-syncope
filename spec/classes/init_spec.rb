@@ -52,15 +52,7 @@ describe 'syncope' do
 
     it 'should precreate logs' do
       should contain_file('/opt/apache-tomcat/syncope/logs/console.log').with_ensure('file')
-      # should contain_file('/opt/apache-tomcat/syncope/logs/velocity.log').with_ensure('file')
     end
-
-    ### syncope packages removal
-    # it 'should have all the packages' do
-    #   should contain_package('syncope').with_ensure('1.2.1-11')
-    #   should contain_package('syncope-console').with_ensure('1.2.1-9')
-    #   should contain_package('syncope-sts').with_ensure('1.2.1-10')
-    # end
 
     it 'should contain default admin passwords settings' do
       should contain_ini_setting('admin_password').with(
